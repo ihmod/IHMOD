@@ -1461,7 +1461,7 @@ table td {
   vertical-align: middle;
 }
 *::selection {
-  background: #00c4b6;
+  background: #0062c4;
   color: #f7f7f7;
 }
 button {
@@ -1664,7 +1664,7 @@ figure.highlight pre .javascript .function {
 #article-container code {
   padding: 2px 4px;
   background: rgba(27,31,35,0.08);
-  color: #f47466;
+  color: #0062c4;
 }
 #article-container pre {
   padding: 10px 20px;
