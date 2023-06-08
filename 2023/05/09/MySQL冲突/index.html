@@ -1,0 +1,442 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>MySQL冲突 | iHMOD</title><meta name="author" content="秋奕白"><meta name="copyright" content="秋奕白"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffff"><meta name="description" content="phpstudy的MySQL与本地MySQL冲突，服务不能启动，分析解决">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySQL冲突">
+<meta property="og:url" content="http://ihmod.gitee.io/2023/05/09/MySQL%E5%86%B2%E7%AA%81/index.html">
+<meta property="og:site_name" content="iHMOD">
+<meta property="og:description" content="phpstudy的MySQL与本地MySQL冲突，服务不能启动，分析解决">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://ihmod.gitee.io/img/IHMOD1.png">
+<meta property="article:published_time" content="2023-05-09T08:09:34.555Z">
+<meta property="article:modified_time" content="2023-05-10T12:08:11.156Z">
+<meta property="article:author" content="秋奕白">
+<meta property="article:tag" content="MySQL">
+<meta property="article:tag" content="phpstudy">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://ihmod.gitee.io/img/IHMOD1.png"><link rel="shortcut icon" href="/img/V-03.ico"><link rel="canonical" href="http://ihmod.gitee.io/2023/05/09/MySQL%E5%86%B2%E7%AA%81/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin=""/><link rel="stylesheet" href="/css/index.css?v=4.8.1"><link rel="stylesheet" href="https://unpkg.com/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://unpkg.com/node-snackbar@0.1.16/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://unpkg.com/@fancyapps/ui@5.0.15/dist/fancybox/fancybox.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: {"limitDay":500,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: true,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#10C5F7","bgDark":"#10C5F7","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://unpkg.com/flickr-justified-gallery@2.1.2/dist/fjGallery.min.js',
+      css: 'https://unpkg.com/flickr-justified-gallery@2.1.2/dist/fjGallery.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'MySQL冲突',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-05-10 20:08:11'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/my_tx.jpg" onerror="onerror=null;src='/img/链接.png'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">28</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">29</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">11</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/photos/"><i class="fa-fw fas fa-image"></i><span> 图库</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> iHMOD</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img fixed" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="iHMOD"><span class="site-name">iHMOD</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/photos/"><i class="fa-fw fas fa-image"></i><span> 图库</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> iHMOD</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">MySQL冲突</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-05-09T08:09:34.555Z" title="发表于 2023-05-09 16:09:34">2023-05-09</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-05-10T12:08:11.156Z" title="更新于 2023-05-10 20:08:11">2023-05-10</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E7%96%91%E6%83%91/">疑惑</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.4k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>4分钟</span></span><span class="post-meta-separator">|</span><span id="" data-flag-title="MySQL冲突"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span class="waline-pageview-count" data-path="/2023/05/09/MySQL%E5%86%B2%E7%AA%81/"><i class="fa-solid fa-spinner fa-spin"></i></span></span><span class="post-meta-separator">|</span><span class="post-meta-commentcount"><i class="far fa-comments fa-fw post-meta-icon"></i><span class="post-meta-label">评论数:</span><a href="/2023/05/09/MySQL%E5%86%B2%E7%AA%81/#post-comment"><span class="waline-comment-count" data-path="/2023/05/09/MySQL%E5%86%B2%E7%AA%81/"><i class="fa-solid fa-spinner fa-spin"></i></span></a></span></div></div></div><article class="post-content" id="article-container"><h3 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h3><p><img src="https://s2.loli.net/2023/05/09/Cy4auMdBHeRZE8K.png" alt="image-20230509161532585"></p>
+<ul>
+<li>phpstudy中的MySQL的服务启动又关掉了，无法正常使用数据库</li>
+<li>启动过phpstudy的MySQL后（没起来），本地的MySQL连接工具也无法连接了</li>
+</ul>
+<h3 id="分析解决问题"><a href="#分析解决问题" class="headerlink" title="分析解决问题"></a>分析解决问题</h3><p>其实问题往简单说就一句话，有两个MySQL，运行时冲突了导致都不能正常运行，那我们只要卸载其中一个，就可以正常使用啦。</p>
+<p><img src="https://s2.loli.net/2023/05/10/bWVIZEJsUyX5LAr.png" alt="5.7.26"></p>
+<p><img src="https://s2.loli.net/2023/05/09/HR3yTcsGJnjtoWb.png" alt="5.7.38"></p>
+<ul>
+<li>删除服务</li>
+<li>删除环境变量</li>
+</ul>
+<p>但是我有一种执念，又想保留原来的MySQL，又想phpstudy里的MySQL能正常使用。<br>于是开始查资料、分析到底是哪里冲突了</p>
+<ul>
+<li><p>推测一：端口占用</p>
+<p>phpstudy也启动了一个MySQL服务，占用了默认的3306端口，结果哪个都不能正常启动</p>
+<p>排错方法：</p>
+<p>查看端口占用情况</p>
+<pre class="line-numbers language-cmd" data-language="cmd"><code class="language-cmd">netstat -ano|findstr &quot;3306&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>有进程占用则杀掉</p>
+<pre class="line-numbers language-cmd" data-language="cmd"><code class="language-cmd">#根据进程号查进程名，把1111替换成你查到的进程号
+tasklist|findstr &quot;1111&quot;；
+#根据进程名称杀进程：
+taskkill &#x2F;f &#x2F;t &#x2F;im  进程名称<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p>再尝试启动<br>我这里没有发现端口占用，显然不适用</p>
+</li>
+<li><p>推测二：缺少服务</p>
+<p>先查看服务启动了没有</p>
+<pre class="line-numbers language-none"><code class="language-none">#win+r,输入
+services.msc
+#回车<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></li>
+</ul>
+<p><img src="https://s2.loli.net/2023/05/09/Vbvr5HINcO4LDFx.png" alt="image-20230509163523300"></p>
+<p>这个服务没有起来，而且路径显示的是本地的MySQL执行文件（本地5.7.38，phpstudy是5.7.26）</p>
+<p>也就是说要phpstudy不能启动是因为没有对应的服务</p>
+<blockquote>
+<p>那能不能为phpstudy的MySQL注册一个服务呢，两个服务井水不犯河水，各自软件使用各自的MySQL服务在同一个端口(3306)，只要不在同一时间，这样子是否可行呢？</p>
+</blockquote>
+<p>注册MySQL服务<br>进入小皮的MySQL存放路径下的bin目录（例如D:\phpstudy_pro\Extensions\MySQL5.7.26\bin）<br>在此路径下打开CMD</p>
+<blockquote>
+<p>【mysqld】：是mysql的核心程序，用于管理mysql的数据库文件以及用户的请求操作，位于bin目录下</p>
+<p>​	此处进入小皮的MySQL的bin目录下使用，是因为Windows cmd的命令查找顺序</p>
+<ul>
+<li>1.从当前工作目录查找</li>
+<li>2.环境变量系统PATH</li>
+<li>3.环境变量用户PATH</li>
+</ul>
+</blockquote>
+<pre class="line-numbers language-cmd" data-language="cmd"><code class="language-cmd">#注册MySQL服务，后面加服务名
+mysqld  -install   服务名字 
+#移除MySQL服务
+mysqld -remove   服务名字 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><img src="https://s2.loli.net/2023/05/09/q59FlYueoBr6WEU.png" alt="image-20230509185552733"></p>
+<p>测试这两个服务能不能正常启动、连接到数据库</p>
+<pre class="line-numbers language-cmd" data-language="cmd"><code class="language-cmd">net start MySQL(MySQL2)               #启动服务<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>接下来要用到mysql命令登录，现在系统环境变量path里设置一下命令路径</p>
+<p><img src="https://s2.loli.net/2023/05/09/qBbXfoLl5vSTA4k.png" alt="image-20230509193026660"></p>
+<p>越往上，优先级越高</p>
+<p><img src="https://s2.loli.net/2023/05/09/GHsQ9AVlRXOfTJg.png" alt="image-20230509193337253"></p>
+<p>在path中交换顺序就可以切换mysql了</p>
+<p><img src="https://s2.loli.net/2023/05/09/H1nUsiWKSPcyV3A.png" alt="image-20230509193813541"></p>
+<p>测试登录情况</p>
+<pre class="line-numbers language-none"><code class="language-none">mysql -u root -p            #登录用户名root,使用登录密码<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>本地MySQL</p>
+<p><img src="https://s2.loli.net/2023/05/09/Nw69YOAd73pjXVk.png" alt="image-20230509214220392"></p>
+<p>小皮MySQL</p>
+<p><img src="https://s2.loli.net/2023/05/09/DbwShfJIesCGZ32.png" alt="image-20230509205017991"></p>
+<p>报错了，Access denied for user ‘root‘@’localhost’ (using password: YES)，即密码不对，连不上</p>
+<p>这时候想起来小皮的数据库根本没有初始化</p>
+<pre class="line-numbers language-none"><code class="language-none">mysqld --initialize --console           #执行此命令要保证data目录是空的       <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>初始化后用户默认为root，还有一个密码，登录后就可以更改密码</p>
+<p>data目录下生成了一个MySQL连接的基本的数据库</p>
+<p><img src="https://s2.loli.net/2023/05/10/LYFtpHk7qesdPiJ.png" alt="image-20230509210922720"></p>
+<p>修改密码时报错</p>
+<pre class="line-numbers language-cmd" data-language="cmd"><code class="language-cmd">mysql&gt; use mysql;
+ERROR 1820 (HY000): You must reset your password using ALTER USER statement before executing this statement.<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>具体参考：</p>
+<a class="btn-beautify blue" target="_blank" rel="noopener" href="https://blog.csdn.net/muziljx/article/details/81541896" 
+  title="报错处理"><i class="fa fa-arrow-circle-right"></i><span>报错处理</span></a>
+
+<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><p>至此大问题基本解决，两个MySQL服务都能起来，各自的连各自的数据库，但是是不是每次用完这个应用都要关闭对应的MySQL服务，再开另一个，还要修改系统环境变量，那有没有办法同时跑呢？</p>
+<ul>
+<li>首先端口肯定不能一样，修改小皮的MySQL的配置文件my.ini修改端口为3305或者其他非常用的端口</li>
+</ul>
+<p>但是命令行能跑，我们终归还是要回到开发环境，客户端能跑吗？</p>
+<p>测试了一下，还是不能，崩溃，感情做了半天无用功捏？</p>
+<p>但是还是得到了一些信息</p>
+<p>情况：</p>
+<ul>
+<li>重启后Navicat（代表使用本地MySQL）可以正常启动，phpstudy启动后，Navicat也无法启动了。这里边肯定冲突了，可以操作的地方都操作了，理论是完全可行。</li>
+<li>重启后小皮也无法启动MySQL</li>
+</ul>
+<p>分析：</p>
+<p>还说要有影响因素就应该是注册表那类定义的优先级问题了，导致小皮启动MySQL时去找的默认的服务，我们自己注册的服务没有被识别，所以没起来</p>
+<p>去网上查资料发现这样一个说法</p>
+<p><img src="https://s2.loli.net/2023/05/10/FpLUakTiAyxwV52.png" alt="image-20230510104003786"></p>
+<p>为了找出问题</p>
+<ul>
+<li><p>把本地的服务名改成MySQL1，小皮改成MySQL2，小皮和本地的Navicat能同时启动，但是MySQL2根本没启动</p>
+</li>
+<li><p>禁用MySQL2，发现本地可以跑小皮也可以跑，那小皮是跑在MySQL1上吗</p>
+</li>
+<li><p>禁用MySQL1，发现小皮还是可以启动，本地起不来，MySQL2服务也没起来，卧槽卧槽，这啥意思，小皮根本没用咱的服务！</p>
+<p>看看端口，进程名</p>
+</li>
+</ul>
+<pre class="line-numbers language-none"><code class="language-none">netstat -ano|findstr &quot;80&quot;
+
+tasklist|findstr &quot;15588&quot;
+
+taskkill &#x2F;f &#x2F;t &#x2F;im 进程名称<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<p>果然，小皮的数据库跑起来后后台就有个mysqld.exe的进程</p>
+<p><img src="https://s2.loli.net/2023/05/10/4jzdheInVkaGWrN.png" alt="xiaop"></p>
+<p>那这个是用的本地的还是集成环境的MySQL呢？</p>
+<p>对比data目录下的数据库就可以知道两个连接下的数据库不一样</p>
+<p><img src="https://s2.loli.net/2023/05/10/8r4hfUjN7Kgnlpi.png" alt="image-20230510132803973"></p>
+<p>我们用数据库连接工具连一下</p>
+<p>改一下连接属性</p>
+<p><img src="https://s2.loli.net/2023/05/10/mAk1PecSGXKJgr4.png" alt="image-20230510132605691"></p>
+<p><img src="https://s2.loli.net/2023/05/10/LASfGn4l2hT8YKt.png" alt="image-20230510132655948"></p>
+<p>ok，显示的是小皮的数据库，说明小皮有自己的连接方式，并不依赖于服务</p>
+<p>我们删除MySQL2服务再解除MySQL1的禁用，就可以了(对于Navicat连不上MySQL，请检查服务是否启动了，可以设置开机自启动)</p>
+<p>至此，本地和小皮的数据库冲突解决</p>
+<p><img src="https://s2.loli.net/2023/05/10/Jmlh4GoDYBHyXQr.png" alt="image-20230510134054259"></p>
+</article><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/MySQL/">MySQL</a><a class="post-meta__tags" href="/tags/phpstudy/">phpstudy</a></div><div class="post_share"><div class="social-share" data-image="/img/IHMOD1.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://unpkg.com/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://unpkg.com/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/05/13/BP%E4%BD%BF%E7%94%A8/" title="BP使用笔记"><img class="cover" src="/img/IHMOD1.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">BP使用笔记</div></div></a></div><div class="next-post pull-right"><a href="/2023/04/30/JAVA/" title="Java EE"><img class="cover" src="/img/IHMOD1.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Java EE</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div><div id="comment-switch"><span class="first-comment">Waline</span><span class="switch-btn"></span><span class="second-comment"></span></div></div><div class="comment-wrap"><div><div id="waline-wrap"></div></div><div></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%97%AE%E9%A2%98%E6%8F%8F%E8%BF%B0"><span class="toc-number">1.</span> <span class="toc-text">问题描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E6%9E%90%E8%A7%A3%E5%86%B3%E9%97%AE%E9%A2%98"><span class="toc-number">2.</span> <span class="toc-text">分析解决问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B6%E4%BB%96"><span class="toc-number">3.</span> <span class="toc-text">其他</span></a></li></ol></div></div></div></div></main><footer id="footer" style="background: transparent"><div id="footer-wrap"><div class="copyright">&copy;2021 - 2023 By 秋奕白</div><div class="footer_custom_text"><span id="runtime"></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.8.1"></script><script src="/js/main.js?v=4.8.1"></script><script src="/js/tw_cn.js?v=4.8.1"></script><script src="https://unpkg.com/@fancyapps/ui@5.0.15/dist/fancybox/fancybox.umd.js"></script><script src="https://unpkg.com/instant.page@5.2.0/instantpage.js" type="module"></script><script src="https://unpkg.com/node-snackbar@0.1.16/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://unpkg.com/pangu@4.0.7/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://unpkg.com/mermaid@9.4.3/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script><script>function loadWaline () {
+  function initWaline () {
+    const waline = Waline.init(Object.assign({
+      el: '#waline-wrap',
+      serverURL: 'https://waline.ihmod.xyz',
+      pageview: true,
+      dark: 'html[data-theme="dark"]',
+      path: window.location.pathname,
+      comment: true,
+    }, null))
+  }
+
+  const walineCSSLoad = document.getElementById('waline-css')
+
+  if (typeof Waline === 'object') {
+    walineCSSLoad ? initWaline() : getCSS('https://unpkg.com/@waline/client@2.14.9/dist/waline.css','waline-css').then(initWaline)
+  }
+  else {
+    getCSS('https://unpkg.com/@waline/client@2.14.9/dist/waline.css','waline-css').then(() => {
+      getScript('https://unpkg.com/@waline/client@2.14.9/dist/waline.js').then(initWaline)
+    })
+  }
+}
+
+if ('Waline' === 'Waline' || !false) {
+  if (false) btf.loadComment(document.getElementById('waline-wrap'),loadWaline)
+  else setTimeout(loadWaline, 0)
+} else {
+  function loadOtherComment () {
+    loadWaline()
+  }
+}</script></div><script src="https://npm.elemecdn.com/jquery@latest/dist/jquery.min.js"></script><script src="https://unpkg.com/butterfly-extsrc@1.1.3/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-show-text" src="https://unpkg.com/butterfly-extsrc@1.1.3/dist/click-show-text.min.js" data-mobile="false" data-text="iHMOD" data-fontsize="14px" data-random="false" async="async"></script><link rel="stylesheet" href="https://unpkg.com/aplayer@1.10.1/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://unpkg.com/aplayer@1.10.1/dist/APlayer.min.js"></script><script src="https://unpkg.com/butterfly-extsrc@1.1.3/metingjs/dist/Meting.min.js"></script><script src="https://unpkg.com/pjax@0.2.8/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  document.getElementById('rightside').style.cssText = "opacity: ''; transform: ''"
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div class="no-result" id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.8.1"></script></div></div></body></html>

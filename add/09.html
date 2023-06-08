@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/x.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="all" onload="this.media='all'">
+    <script src="../js/x.js"></script>
+    <title>简易计算器</title>
+</head>
+<body>
+    <ul >
+        <li>更换主题</li>
+        <li><button  value="p" onclick="changecolor(this)" class="pink">猛男粉</button></li>
+        <li><button value="g" onclick="changecolor(this)" class="gray">经典灰</button></li>
+
+    </ul>
+    <div class="mar" id="mar">
+        <span class="name">河爷一号</span>
+        <input type="text" id="txt" class="xsp" disabled="disabled">
+        <hr >
+        <table  class="buttom">
+            <tr>
+                <td colspan="3"><i class="fas fa-star-of-david"></i> 0124-tjx</td>
+                <td colspan="2"><input type="button" class="off" value="OFF/ON" onclick="off()"></td>
+            </tr>
+            <tr>
+                <td><input type="button" class="num " onclick= "dis(this)" value="7" ></td>
+                <td><input type="button" class="num " onclick= "dis(this)"  value="8"></td>
+                <td><input type="button" class="num " onclick= "dis(this)"  value="9"></td>
+                <td><input type="button" class="func " onclick= "dis(this)"  value="%"></td>
+                <td><input type="button" class="del" onclick= "dele()"   value="DEL" ></td>
+            </tr>
+            <tr>
+                <td><input type="button" class="num " onclick= "dis(this)"  value="4"></td>
+                <td><input type="button" class="num " onclick= "dis(this)"  value="5"></td>
+                <td><input type="button" class="num " onclick= "dis(this)"  value="6"></td>
+                <td><input type="button" class="func " onclick= "dis(this)"  value="×"> </td>
+               
+                <td><input type="button" class="func " onclick= "dis(this)"  value="÷"></td>
+            </tr>
+            <tr>
+                <td><input type="button" class="num " onclick= "dis(this)"  value="1"></td>
+                <td><input type="button" class="num " onclick= "dis(this)"  value="2"></td>
+                <td><input type="button" class="num " onclick= "dis(this)"  value="3"></td>
+                <td rowspan="2"><input type="button" class="plus " onclick= "dis(this)"  value="+"></td>
+                <td><input type="button" class="func " onclick= "dis(this)"  value="-"></td>
+            </tr>
+            <tr>
+                <td><input type="button" class="num " onclick= "dis(this)"  value="0"></td>
+                <td><input type="button" class="num first" onclick= "C()"   value="C"></td>
+                <td><input type="button" class="num " onclick= "dis(this)"  value="."></td>
+                <!-- <td rowspan="2"></td> -->
+                <td><input type="button" class="func" onclick= "result()"  value="=" ></td>
+
+            </tr>
+        </table>
+        <hr>
+    </div>
+</body>
+</html>
