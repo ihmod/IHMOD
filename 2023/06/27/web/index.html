@@ -1,0 +1,647 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>前端面试题 | iHMOD</title><meta name="author" content="秋奕白"><meta name="copyright" content="秋奕白"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffff"><meta name="description" content="前端面试">
+<meta property="og:type" content="article">
+<meta property="og:title" content="前端面试题">
+<meta property="og:url" content="http://ihmod.gitee.io/2023/06/27/web/index.html">
+<meta property="og:site_name" content="iHMOD">
+<meta property="og:description" content="前端面试">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://ihmod.gitee.io/img/IHMOD1.png">
+<meta property="article:published_time" content="2023-06-27T13:45:43.253Z">
+<meta property="article:modified_time" content="2023-06-28T01:34:16.178Z">
+<meta property="article:author" content="秋奕白">
+<meta property="article:tag" content="前端">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://ihmod.gitee.io/img/IHMOD1.png"><link rel="shortcut icon" href="/img/V-03.ico"><link rel="canonical" href="http://ihmod.gitee.io/2023/06/27/web/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin=""/><link rel="stylesheet" href="/css/index.css?v=4.8.1"><link rel="stylesheet" href="https://unpkg.com/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://unpkg.com/node-snackbar@0.1.16/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://unpkg.com/@fancyapps/ui@5.0.15/dist/fancybox/fancybox.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: {"limitDay":500,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: true,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#10C5F7","bgDark":"#10C5F7","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://unpkg.com/flickr-justified-gallery@2.1.2/dist/fjGallery.min.js',
+      css: 'https://unpkg.com/flickr-justified-gallery@2.1.2/dist/fjGallery.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '前端面试题',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2023-06-28 09:34:16'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/my_tx.jpg" onerror="onerror=null;src='/img/链接.png'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">31</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">33</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">13</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/photos/"><i class="fa-fw fas fa-image"></i><span> 图库</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> iHMOD</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img fixed" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="iHMOD"><span class="site-name">iHMOD</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/photos/"><i class="fa-fw fas fa-image"></i><span> 图库</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> iHMOD</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">前端面试题</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-06-27T13:45:43.253Z" title="发表于 2023-06-27 21:45:43">2023-06-27</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-06-28T01:34:16.178Z" title="更新于 2023-06-28 09:34:16">2023-06-28</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E9%9D%A2%E7%BB%8F/">面经</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">5.9k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>18分钟</span></span><span class="post-meta-separator">|</span><span id="" data-flag-title="前端面试题"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span class="waline-pageview-count" data-path="/2023/06/27/web/"><i class="fa-solid fa-spinner fa-spin"></i></span></span><span class="post-meta-separator">|</span><span class="post-meta-commentcount"><i class="far fa-comments fa-fw post-meta-icon"></i><span class="post-meta-label">评论数:</span><a href="/2023/06/27/web/#post-comment"><span class="waline-comment-count" data-path="/2023/06/27/web/"><i class="fa-solid fa-spinner fa-spin"></i></span></a></span></div></div></div><article class="post-content" id="article-container"><ul>
+<li><p>官方 <a target="_blank" rel="noopener" href="https://vue3js.cn/interview/">https://vue3js.cn/interview/</a></p>
+</li>
+<li><p>cookie、localStorage、sessionStorage区别？</p>
+<p>cookie是客户端发送请求之后，服务器给客户端的一个密钥吧，它有过期时间，并且分别存储在客户端和服务器端，可以用来保存用户的身份信息和状态。</p>
+<p>而localStorage和sessionStorage是H5提供的客户端本地存储，也就是webStorage，都不参与服务器的通信。</p>
+<p>区别是sessionStorage具有同源政策，只在当前窗口能读取，随着窗口关闭就会消失</p>
+<p>localStorage不会过期，只能手动清除</p>
+</li>
+<li><p>内联和内联块有什么区别？</p>
+<p>内联元素是指在默认情况下，其内容都在同一行内排列，并且宽度由元素内容所撑开。常见的内联元素有<span>, <a>, <img>等。</p>
+<p>内联块元素则跟内联元素类似，同样默认排列在一行内，但是内联块元素可以设置元素的宽度、高度以及内外边距等属性。常见的内联块元素有<input>, <select>, <label>等。</p>
+<p><img src="https://s2.loli.net/2023/06/28/T5CgfxJvIwsr7A1.png"></p>
+</li>
+<li><p>行内元素有哪些？块级元素有哪些？</p>
+<p>HTML 中的元素可以分为两类：块级元素（block element）和行内元素（inline element）。根据 W3C 的规范，每个 HTML 标签都属于其中之一。</p>
+<p>行内元素（Inline Element）有：</p>
+<ol>
+<li>&lt;a&gt;：链接标签</li>
+<li>&lt;b&gt;：加粗</li>
+<li>&lt;code&gt;：计算机代码</li>
+<li>&lt;em&gt;：强调</li>
+<li>&lt;i&gt;：斜体</li>
+<li>&lt;img&gt;：图像</li>
+<li>&lt;input&gt;：输入框</li>
+<li>&lt;label&gt;：标签</li>
+<li>&lt;span&gt;：段落的小区块</li>
+<li>&lt;select&gt;：下拉列表</li>
+<li>&lt;strong&gt;：加重语气</li>
+<li>&lt;textarea&gt;：文本框</li>
+</ol>
+<p>块级元素（Block Level Element）有：</p>
+<ol>
+<li>&lt;address&gt;：地址</li>
+<li>&lt;article&gt;：文章</li>
+<li>&lt;aside&gt;：侧边栏</li>
+<li>&lt;blockquote&gt;：块引用</li>
+<li>&lt;canvas&gt;：画布</li>
+<li>&lt;dd&gt;：定义列表中定义的项目</li>
+<li>&lt;div&gt;：文档块</li>
+<li>&lt;dl&gt;：定义列表</li>
+<li>&lt;dt&gt;：定义列表中项目的定义</li>
+<li>&lt;fieldset&gt;：表单域集</li>
+<li>&lt;figcaption&gt;：图像说明</li>
+<li>&lt;figure&gt;：图像（或图解）与其说明</li>
+<li>&lt;footer&gt;：网页底部区域</li>
+<li>&lt;form&gt;：表单</li>
+<li>&lt;h1&gt; - &lt;h6&gt;：标题标签</li>
+<li>&lt;header&gt;：网页头部区域</li>
+<li>&lt;hr&gt;：水平分隔线</li>
+<li>&lt;li&gt;：列表项</li>
+<li>&lt;nav&gt;：导航链接</li>
+<li>&lt;ol&gt;：有序列表</li>
+<li>&lt;p&gt;：段落</li>
+<li>&lt;pre&gt;：预格式化文本</li>
+<li>&lt;section&gt;：网页中的章节</li>
+<li>&lt;table&gt;：表格</li>
+<li>&lt;ul&gt;：无序列表</li>
+</ol>
+<p>需要注意的是，行内元素通常不能包含块级元素，而块级元素可以包含其他块级元素和行内元素。这个规则在 XHTML 中更为严格，但是在 HTML5 中有所放宽。</p>
+</li>
+<li><p>相对、固定、绝对和静态定位元素之间有什么区别？</p>
+<p>相对定位（Relative positioning）：相对定位是指元素相对于其在文档中原始位置的偏移量进行定位。在相对定位中，元素仍然占据在文档流中的位置，但可以通过设置 top、bottom、left 和 right 属性，来移动元素的位置。相对定位不会对该元素的宽高产生影响，也不会影响其他元素的布局。</p>
+<p>固定定位（Fixed positioning）：固定定位是指元素相对于浏览器窗口（或某个父元素）的位置进行定位。在固定定位中，元素不会随着页面滑动而移动，但也会产生空隙。可以通过设置 top、bottom、left 和 right 属性来确定元素的位置。与相对定位不同，固定定位会脱离文档流，同时固定定位元素的宽高也不会影响其它元素的布局。</p>
+<p>绝对定位（Absolute positioning）：绝对定位是指元素相对于其最近的已定位（即非 static 定位）的祖先元素（父元素或更高级的祖先元素）的位置进行定位。如果没有已定位的祖先元素，则相对于 body 元素定位。绝对定位元素会脱离文档流，并可以通过设置 top、bottom、left 和 right 属性来移动元素的位置。绝对定位也不会影响其他元素的布局。</p>
+<p>静态定位（Static positioning）：静态定位是元素的默认定位方式，也即正常文档流中的布局方式。它保持元素在文档流中的正常位置，并不受 top、bottom、left 和 right 属性的影响。</p>
+<p>需要注意的是，相对定位、绝对定位和固定定位都是相对于其某个祖先元素的位置进行定位，而静态定位是在文档流中按照它在 HTML 中的位置布局。</p>
+</li>
+<li><p>什么是HTML中的空元素？</p>
+<p>在 HTML 中，有一类元素是没有内容的，它们被称为“空元素”或“自闭合元素”，因为它们没有结束标签，而是在开始标签中通过“&#x2F;”符号来自闭合，其中常用的空元素有以下几个：</p>
+<ol>
+<li>img：用于插入图片。</li>
+<li>br：用于换行。</li>
+<li>input：用于输入框、复选框、单选框等表单元素。</li>
+<li>hr：用于分割线。</li>
+<li>meta：用于定义文档的元信息。</li>
+<li>link：用于在 HTML 中引入其他文件，如 CSS 文件、JavaScript 文件等。</li>
+</ol>
+<p>在 HTML5 标准中，空元素不需要使用结束标签，因为它们没有内容需要结束。在这些元素中，有一些元素由于历史原因已被默认允许省略结束标签，如 img，input 等。但是，在编写 HTML 代码时，最好省略结束标签并不意味着完全放弃。遵循 HTML 规范可以增加代码可读性，更好地维护代码。</p>
+</li>
+<li><p>如何居中一个div?</p>
+<p>有多种方法可以将一个 div 元素居中，以下是几种常用的方法：</p>
+<ol>
+<li>使用 flexbox 布局</li>
+</ol>
+<pre class="line-numbers language-css" data-language="css"><code class="language-css"><span class="token selector">.container</span> <span class="token punctuation">&#123;</span>
+  <span class="token property">display</span><span class="token punctuation">:</span> flex<span class="token punctuation">;</span>
+  <span class="token property">justify-content</span><span class="token punctuation">:</span> center<span class="token punctuation">;</span>
+  <span class="token property">align-items</span><span class="token punctuation">:</span> center<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ol start="2">
+<li>使用 absolute 定位</li>
+</ol>
+<pre class="line-numbers language-css" data-language="css"><code class="language-css"><span class="token selector">.container</span> <span class="token punctuation">&#123;</span>
+  <span class="token property">position</span><span class="token punctuation">:</span> relative<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+<span class="token selector">.center</span> <span class="token punctuation">&#123;</span>
+  <span class="token property">position</span><span class="token punctuation">:</span> absolute<span class="token punctuation">;</span>
+  <span class="token property">top</span><span class="token punctuation">:</span> 50%<span class="token punctuation">;</span>
+  <span class="token property">left</span><span class="token punctuation">:</span> 50%<span class="token punctuation">;</span>
+  <span class="token property">transform</span><span class="token punctuation">:</span> <span class="token function">translate</span><span class="token punctuation">(</span>-50%<span class="token punctuation">,</span> -50%<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>其中，.container 表示外部容器，.center 表示要居中的 div 元素。</p>
+<ol start="3">
+<li>使用 text-align 属性</li>
+</ol>
+<pre class="line-numbers language-css" data-language="css"><code class="language-css"><span class="token selector">.container</span> <span class="token punctuation">&#123;</span>
+  <span class="token property">text-align</span><span class="token punctuation">:</span> center<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+<span class="token selector">.center</span> <span class="token punctuation">&#123;</span>
+  <span class="token property">display</span><span class="token punctuation">:</span> inline-block<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>其中，.container 表示外部容器，.center 表示要居中的 div 元素，利用 text-align:center 将 .center 元素水平居中，再利用 display:inline-block 将 .center 元素变为行内元素，实现垂直居中。</p>
+<p>以上方法都可以在大部分情况下实现 div 元素的居中，因其各有特点，可根据具体需求选择。</p>
+</li>
+<li><p>W3C 的规范的理解？</p>
+</li>
+</ul>
+<p>  W3C即万维网联盟，是一个国际化标准组织，主要负责制定和推广 Web 标准。</p>
+<p>  重要的规范主要有</p>
+<p>  HTML5、CSS3、ECMAscript（JavaScript）、Web Service规范、SVG（可缩放矢量图形）和XML（可扩展标记语言）</p>
+<ul>
+<li><p>什么是闭包，您如何&#x2F;为什么要使用闭包？</p>
+<p>闭包（closure）是指在函数内部定义的函数，它可以访问到父函数的作用域的变量和参数，即使父函数已经执行完毕，这些变量仍然可以被访问到。</p>
+<p>闭包可以用来实现一些高级的编程技巧，比如：</p>
+<ol>
+<li>私有变量和私有方法：使用闭包可以实现私有变量和私有方法，这些变量和方法只能在函数内部访问，对外是不可见的。</li>
+<li>记忆化函数：使用闭包可以将函数的计算结果缓存下来，下次相同的参数调用时可以直接返回缓存结果，从而提高函数性能。</li>
+<li>模块化开发：使用闭包可以实现模块化开发，将代码以块的形式封装在闭包中，可以避免变量名、函数等命名冲突，同时也方便代码的维护和重用。</li>
+<li>回调函数：使用闭包可以实现回调函数，将一个函数作为参数传递给另一个函数，当满足某些条件时，执行回调函数。</li>
+</ol>
+<p>在 JavaScript 开发中，闭包是非常常见的编程技巧。但同时，过多的使用闭包也会导致内存泄漏等问题，所以在使用闭包时需要注意内存管理，避免滥用闭包。</p>
+</li>
+<li><p>图片懒加载怎么做得？有哪些常见方案？</p>
+<p>图片懒加载（Lazy Load）是一种优化 Web 页面加载速度的技术，它的原理是在页面加载完毕后，仅在用户实际需要时才加载图片，而不是一次性加载页面中所有的图片。这种技术能够加快页面的加载速度，并节省加载带宽，提高页面性能。</p>
+<p>以下是几种常见的图片懒加载实现方案：</p>
+<ol>
+<li>IntersectionObserver API：该 API 可以实现对元素与视窗的交叉区域监测，使用该 API 可以很方便地实现图片懒加载功能。</li>
+<li>原生 JS 实现：使用原生 JavaScript 可以实现图片懒加载功能。具体方法是通过监听页面滚动事件，在图片出现在屏幕可视区域前，不加载图片，当图片滚动至屏幕可视区域时再加载图片。</li>
+<li>使用第三方库：现在有许多第三方库都提供了懒加载图片的功能，比如：JQuery Lazyload 插件、Lozad.js、Layzr.js等，这些库提供了许多配置项，可以根据具体需求选择。</li>
+</ol>
+<p>不论哪种方案，图片懒加载的核心就是将部分资源的加载推迟到其真正需要的时刻，这可以有效地减少页面的初始加载大小，提高网页的初始速度。同时，对于一些图片比较多，且其中一些图片较为复杂无法转为 WebP 格式的情况下，使用图片懒加载也能有效避免页面加载速度过慢的问题。</p>
+</li>
+<li><p>vue 的数据观测原理？</p>
+<p>Vue 的数据观测原理是通过 Object.defineProperty() 方法来实现的。Vue 把需要观测的数据对象中的每个属性都利用 Object.defineProperty() 方法转化为 getter 和 setter，从而实现了数据的劫持。</p>
+<p>当获取数据时，会触发该属性的 getter，Vue会将该属性与之对应的依赖关系收集起来并进行存储。当修改数据时，会触发该属性的 setter，Vue 会通知 Watcher 监听器进行更新。</p>
+</li>
+<li><p>选择器的权重优先级？</p>
+<p>从高到低依次是</p>
+<ol>
+<li><p>!important：!important 声明的样式优先级最高，它可以覆盖任何其他选择器声明的样式。</p>
+</li>
+<li><p>行内样式：使用行内样式时，直接在元素上设置相应的 style 属性，它的权重级别仅次于 !important 声明。</p>
+</li>
+<li><p>ID 选择器：ID 选择器的权重级别为 100。</p>
+</li>
+<li><p>类选择器、属性选择器和伪类选择器：类选择器、属性选择器和伪类选择器的权重级别为 10。</p>
+</li>
+<li><p>标签名选择器和伪元素选择器：标签名选择器和伪元素选择器的权重级别为 1。</p>
+</li>
+</ol>
+</li>
+<li><p>介绍bom、dom？</p>
+<p>BOM（浏览器对象模型）和 DOM（文档对象模型）都是 JavaScript 操作网页的接口。</p>
+<p>BOM 主要是针对浏览器窗口相关的操作，包括浏览器窗口位置、大小、浏览器的历史记录、浏览器跳转、窗口关闭等操作。常见的 BOM 对象包括 window、location、navigator、history、screen 等。</p>
+<p>DOM 则是针对网页文档相关的操作，包括获取、修改网页元素的内容或属性、动态创建、插入和删除网页元素等操作。常见的 DOM 对象包括 document、element、node 等。</p>
+</li>
+<li><p>ES6的新特性？</p>
+<ol>
+<li><p>箭头函数：<code>() =&gt; &#123;&#125;</code> 表示一个箭头函数，可以简化函数的书写，并对 this 的指向有一些改变。</p>
+</li>
+<li><p>模板字符串：使用反引号 &#96;&#96; 包括的字符串，可以在其中嵌入表达式，简化字符串拼接的过程。</p>
+</li>
+<li><p>解构赋值：通过类似 <code>[a, b] = [1, 2]</code> 的语法，可以方便地从数组或对象中取出元素并赋值给变量。</p>
+</li>
+<li><p>let 和 const：引入了块级作用域变量，可以通过 let 和 const 声明变量，let 声明的变量可以被修改，const 声明的变量不可修改。</p>
+</li>
+<li><p>默认参数：在函数参数中可以为参数设置默认值，例如：<code>function foo(a=1, b=2) &#123; ... &#125;</code>。</p>
+</li>
+<li><p>扩展运算符：<code>...</code> 可以将数组或类数组对象拆分成单个元素，或将多个参数合并成一个数组。</p>
+</li>
+<li><p>Promise：Promise 是一种处理异步操作的方式，使代码更加简洁和优雅，防止回调地狱的出现。</p>
+</li>
+<li><p>Class：ES6 中可以用 class 和 extends 关键字创建类，简化面向对象编程的过程。</p>
+</li>
+<li><p>模块化：通过 import 和 export 关键字对代码进行模块化，可以分块维护和管理代码。</p>
+</li>
+</ol>
+</li>
+<li><p>http状态码304？</p>
+<p>请求的资源暂时重定向</p>
+</li>
+<li><p>vue的虚拟dom？</p>
+<ol>
+<li>Vue.js通过编译将template 模板转换成渲染函数(render ) ，执行渲染函数就可以得到一个虚拟节点树</li>
+<li>避免不必要的DOM操作，以 JavaScript 对象为基础而不依赖真实平台环境，具有跨平台的优点</li>
+</ol>
+</li>
+<li><p>有没有了解 Webpack 的 loader 和 plugin，它们是怎么实现的？</p>
+</li>
+<li><p>UI 组件和业务组件有什么区别？</p>
+</li>
+<li><p>http 的 GET 和 POST 请求有什么区别？</p>
+</li>
+<li><p>GET 请求和 POST 请求的参数传递有什么区别？</p>
+</li>
+<li><p>如果想用 GET 请求提交数据有什么问题？</p>
+</li>
+<li><p>Keep-alive 是什么？<br>keep-alive是vue中的内置组件，能在组件切换过程中将状态保留在内存中，防止重复渲染DOM</p>
+</li>
+<li><p>介绍一下jwt？</p>
+<p>json web token技术</p>
+<p>新一代的身份验证方案，主体包含三部分</p>
+<p>算法.数据.签名</p>
+</li>
+<li><p>为什么要使用WebSocket协议，轮询不行吗？什么是长轮询？</p>
+</li>
+<li><p>position有哪些属性？</p>
+</li>
+<li><p>你有写过自定义指令吗？自定义指令的应用场景有哪些？</p>
+<p>在<code>vue</code>中提供了一套为数据驱动视图更为方便的操作，这些操作被称为指令系统</p>
+<p>注册一个自定义指令有全局注册与局部注册</p>
+<p>全局注册主要是通过<code>Vue.directive</code>方法进行注册</p>
+<p>局部注册通过在组件<code>options</code>选项中设置<code>directive</code>属性</p>
+</li>
+<li><p>Vue3和Vue2感觉有什么区别？</p>
+</li>
+<li><p>你了解vue的diff算法吗？说说看</p>
+</li>
+<li><p>透明属性？</p>
+<p>opacity</p>
+</li>
+<li><p>vuex是什么？</p>
+<p>vuex是vue官方提供的一个状态数据管理插件，主要是用来解决多组件共享数据的问题，它把状态数据存储起来，提供统一的API来进行管理</p>
+</li>
+<li><p>vue-router是什么?</p>
+<p>vue-router是vue官方提供的一个路由器插件库，主要是用来实现单页web应用的切换，通过绑定路径和vue组件，来做到局部页面刷新</p>
+</li>
+<li><p>axios怎么封装的?封装了什么？</p>
+<p>主要是对请求封装和 api 接口封装。http 封装，其实就是实例化一个 axios 对象，并对其进行一些配置。api 封装，主要是对用于单个模块所需要的接口进行管理</p>
+</li>
+<li><p>v-show和v-if区别？</p>
+<p>v-if是真正的条件渲染，是被动的只有条件为真的时候才会渲染，v-show则只是对样式中的display属性的切换，来让元素显示和隐藏</p>
+</li>
+<li><p>v-on和v-once区别？</p>
+<p>v-on是对页面的事件进行绑定监听</p>
+<p>v-oncce是告诉浏览器的Vue编译器,只渲染该元素或组件一次。v-once会覆盖原始内容，数据改变时，插值处的内容不会持续更新。</p>
+</li>
+<li><p>什么是MVVM模型？</p>
+<p>MVVM是Model-View-ViewModel的简写。</p>
+<p>模型 model是以数据为中心的数据访问层</p>
+<p>视图view是用户在屏幕上看到的结构、布局和外观。</p>
+<p>视图模型，ViewModel是用来取出 Model 的数据同时帮忙处理 View 中由于需要展示内容而涉及的业务逻辑。</p>
+</li>
+<li><p>什么是MVC模型？</p>
+<p><img src="https://s2.loli.net/2023/06/28/V8rPUJ1zTBlmXYx.png" alt="image-20230628081421383"></p>
+<p>MVC是模型(model)－视图(view)－控制器(controller)的缩写，一种软件设计架构，用一种业务逻辑、数据、界面显示分离的方法组织代码，将业务逻辑聚集到一个部件里面，在改进和个性化定制界面及用户交互的同时，不需要重新编写业务逻辑。</p>
+</li>
+<li><p>vue怎么实现双向数据绑定？</p>
+</li>
+<li><p>display:none 和 visiablity:hidden 区别？</p>
+<p>两者都可以用来隐藏元素，但是display:none 在隐藏后不会占用空间，也就是看不见摸不着，不会对布局产生影响。而visiablity:hidden 会占用空间，看不见摸得着</p>
+</li>
+<li><p>如何提高页面性能？</p>
+</li>
+<li><p>vue创建项目的两种方式？有何区别？</p>
+</li>
+<li><p>软件研发的生命周期的？</p>
+<p>软件开发周期包括可行性分析和开发计划，需求分析，设计（摘要设计和详细设计），编码，测试，维护等</p>
+</li>
+<li><p>vue的生命周期？<br>组件从 创建 到 销毁 的整个过程就是生命周期</p>
+<ol>
+<li>初始化</li>
+<li>挂载</li>
+<li>更新</li>
+<li>销毁</li>
+</ol>
+</li>
+<li><p>什么是 CDN，使用它有什么好处？</p>
+<p>CDN是指内容分发网络，是一种用于加速互联网内容传输的技术架构。CDN可以将内容分发到全球各地的服务器上，使用户可以从离他们最近的服务器上获取内容，从而提高用户的访问速度和网络响应时间。</p>
+<p>使用CDN的好处包括：</p>
+<ol>
+<li>提高网站性能和访问速度：CDN可以将网站的静态资源分发到全球各地的服务器上，使用户可以从离他们最近的服务器上获取内容，从而减少了网络延迟时间和带宽占用情况，从而提高了网站的访问速度。</li>
+<li>提高网站可用性和稳定性：由于CDN分发的内容存储在多台服务器上，即使其中一台服务器出现故障也不会影响其他服务器的正常运行，从而提高了网站的可用性和稳定性。</li>
+<li>节省带宽成本：通过CDN，网站的静态资源可以由CDN提供商提供，从而减少了网站流量的占用情况，从而节省了带宽成本。</li>
+</ol>
+</li>
+<li><p>解释同步函数和异步函数之间的区别？</p>
+<p>同步函数和异步函数的区别在于它们的执行方式和返回值的含义。在同步函数中，代码按照顺序逐行执行，直到该函数返回结果以后，再执行函数后面的代码。而在异步函数中，代码执行不会等待异步操作完成，而是会立即返回，异步操作完成后再执行回调函数。</p>
+</li>
+<li><p>描述伪元素并讨论它们的用途？</p>
+<p>伪元素是CSS中的一种特殊元素，它们允许开发人员在HTML文档中添加虚构或不存在的元素，以便样式化选择器中的某些部分。伪元素的名称以双冒号(::)引导，并且只能用作选择器的名称的前缀，例如：<code>::before</code> 或 <code>::after</code>。</p>
+<p>::before伪元素用于向元素的内容之前插入新的内容，常用于实现装饰效果，例如添加图标、复选框等。::after伪元素则是向元素的内容之后插入新的内容，常用于清除浮动、实现紧凑的排版等。</p>
+<p>伪元素可以提高开发效率，并且使CSS更加灵活。通过使用伪元素，开发人员可以在不改变HTML结构的情况下，轻松地改变元素的样式和表现形式。</p>
+</li>
+<li><p>描述 BFC（块格式上下文）及其工作原理？</p>
+</li>
+<li><p>canvas和 svg有什么区别？</p>
+<p>Canvas和SVG都是用于创建图形的Web标准技术，但它们有着相当不同的特性和用法。</p>
+<p>Canvas是基于像素的绘图系统，能够以JavaScript为基础，动态地在网页中绘制各种图形，包括图像、简单的动画和交互式游戏等。Canvas图形的绘制过程以像素为基础完成，所以在高分辨率和屏幕变化的情况下会有模糊的效果，适用于动态图形和动画场景，但是不适用于浏览器变化或用于复杂的图形交互。</p>
+<p>SVG是基于矢量的绘图系统，通过XML进行描述和呈现，矢量图形的本质是由一组数字表示的数学公式，在放大或缩小时不失真。因此，SVG图形可以适应各种不同的分辨率和浏览器大小。SVG适用于需要高分辨率和清晰度的图形，以及复杂的数据可视化和交互设计场景。</p>
+<p>总的来说，Canvas适用于动态图形和动画场景，而SVG适用于静态的复杂图形和数据可视化场景。同时，使用Canvas和SVG也有一些相同点，例如使用JavaScript进行绘制，支持图形路径和填充、描边等通用的图形操作和样式设置。</p>
+</li>
+<li><p>什么是渐进式渲染？</p>
+<p>渐进式渲染是一种网页优化技术，它可以改善网页的性能和用户体验。具体来说，它指的是在页面加载时，按照内容的可用性迭代式地显示页面的不同部分。</p>
+</li>
+<li><p>使用 CSS 预处理器的优点&#x2F;缺点是什么？</p>
+</li>
+<li><p>http三次握手？</p>
+<p>HTTP三次握手是建立TCP连接时的一种协议。三次握手的过程可以确保客户端和服务器之间的通信链接能够被成功建立。</p>
+<p>三次握手的具体过程如下：</p>
+<ol>
+<li>第一次握手：客户端向服务器发送一个SYN包，其中SYN标志位被设置为1，表示请求建立一个连接。</li>
+<li>第二次握手：服务器收到客户端的SYN包后，向客户端发送一个ACK包和一个SYN包。其中ACK标志位被设置为1，表示确认收到客户端的SYN包，SYN标志位被设置为1，表示请求建立一个连接。</li>
+<li>第三次握手：客户端收到服务器的ACK包和SYN包后，向服务器发送一个ACK包。其中ACK标志位被设置为1，表示确认收到服务器的数据包。</li>
+</ol>
+<p>三次握手完成后，客户端和服务器之间建立了一个可靠的连接，并开始进行数据的传输。备注：在三次握手完成后，客户端和服务器之间建立了一个TCP连接，HTTP协议是基于TCP连接的，所以HTTP通信过程中也会进行三次握手</p>
+</li>
+<li><p>null和undefined区别？</p>
+<p>null 和 undefined 是两个不同的数据类型，表示不同的含义。</p>
+<p>undefined 表示未定义类型，它表示变量已经声明但没有赋值，或者访问对象不存在的属性。</p>
+<p>null 表示空类型，它表示变量已经赋值为空，或者用来清空变量中的原始值。</p>
+</li>
+<li><p>请解释变量声明提升？</p>
+<p>变量声明提升就是JavaScript中变量可以先使用再声明</p>
+</li>
+<li><p>请描述下事件冒泡机制？</p>
+<p>事件冒泡（Event Bubbling）是浏览器中常见的一种事件传播机制，它表示事件从最具体的元素（文档中嵌套层次最深的那个节点）开始，逐级向上传播，直到到达文档根节点为止。</p>
+</li>
+<li><p>“attribute” 和 “property” 的区别是什么？</p>
+</li>
+<li><p>解释下浮动和它的工作原理?</p>
+<p>浮动出现的最开始出现的意义是用来让文字环绕图片而已。</p>
+<p><code>float</code>可以自动包裹元素。<code>float</code>会导致高度塌陷。</p>
+</li>
+</ul>
+</article><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%89%8D%E7%AB%AF/">前端</a></div><div class="post_share"><div class="social-share" data-image="/img/IHMOD1.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://unpkg.com/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://unpkg.com/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2023/06/14/VMware%E8%99%9A%E6%8B%9F%E6%9C%BA/" title="VMware虚拟机"><img class="cover" src="/img/IHMOD1.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">VMware虚拟机</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div><div id="comment-switch"><span class="first-comment">Waline</span><span class="switch-btn"></span><span class="second-comment"></span></div></div><div class="comment-wrap"><div><div id="waline-wrap"></div></div><div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/my_tx.jpg" onerror="this.onerror=null;this.src='/img/%E9%93%BE%E6%8E%A5.png'" alt="avatar"/></div><div class="author-info__name">秋奕白</div><div class="author-info__description">众生皆苦而已</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">31</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">33</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">13</div></a></div><div class="card-info-social-icons is-center"><a class="social-icon" href="/img/myqq.png" target="_blank" title="QQ"><i class="fab fa-qq"></i></a><a class="social-icon" href="https://github.com/ihmod" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:ihmod@qq.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">把学习中的收获都记录下来</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2023/06/27/web/" title="前端面试题"><img src="/img/IHMOD1.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="前端面试题"/></a><div class="content"><a class="title" href="/2023/06/27/web/" title="前端面试题">前端面试题</a><time datetime="2023-06-27T13:45:43.253Z" title="发表于 2023-06-27 21:45:43">2023-06-27</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/06/14/VMware%E8%99%9A%E6%8B%9F%E6%9C%BA/" title="VMware虚拟机"><img src="/img/IHMOD1.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="VMware虚拟机"/></a><div class="content"><a class="title" href="/2023/06/14/VMware%E8%99%9A%E6%8B%9F%E6%9C%BA/" title="VMware虚拟机">VMware虚拟机</a><time datetime="2023-06-14T11:57:29.588Z" title="发表于 2023-06-14 19:57:29">2023-06-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/06/14/apache%E5%92%8Ctomcat%E6%9C%8D%E5%8A%A1%E5%99%A8/" title="Apache和tomcat服务器关系"><img src="/img/IHMOD1.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Apache和tomcat服务器关系"/></a><div class="content"><a class="title" href="/2023/06/14/apache%E5%92%8Ctomcat%E6%9C%8D%E5%8A%A1%E5%99%A8/" title="Apache和tomcat服务器关系">Apache和tomcat服务器关系</a><time datetime="2023-06-14T11:30:05.216Z" title="发表于 2023-06-14 19:30:05">2023-06-14</time></div></div></div></div></div></div></main><footer id="footer" style="background: transparent"><div id="footer-wrap"><div class="copyright">&copy;2021 - 2023 By 秋奕白</div><div class="footer_custom_text"><span id="runtime"></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.8.1"></script><script src="/js/main.js?v=4.8.1"></script><script src="/js/tw_cn.js?v=4.8.1"></script><script src="https://unpkg.com/@fancyapps/ui@5.0.15/dist/fancybox/fancybox.umd.js"></script><script src="https://unpkg.com/instant.page@5.2.0/instantpage.js" type="module"></script><script src="https://unpkg.com/node-snackbar@0.1.16/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://unpkg.com/pangu@4.0.7/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://unpkg.com/mermaid@9.4.3/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script><script>function loadWaline () {
+  function initWaline () {
+    const waline = Waline.init(Object.assign({
+      el: '#waline-wrap',
+      serverURL: 'https://waline.ihmod.xyz',
+      pageview: true,
+      dark: 'html[data-theme="dark"]',
+      path: window.location.pathname,
+      comment: true,
+    }, null))
+  }
+
+  const walineCSSLoad = document.getElementById('waline-css')
+
+  if (typeof Waline === 'object') {
+    walineCSSLoad ? initWaline() : getCSS('https://unpkg.com/@waline/client@2.14.9/dist/waline.css','waline-css').then(initWaline)
+  }
+  else {
+    getCSS('https://unpkg.com/@waline/client@2.14.9/dist/waline.css','waline-css').then(() => {
+      getScript('https://unpkg.com/@waline/client@2.14.9/dist/waline.js').then(initWaline)
+    })
+  }
+}
+
+if ('Waline' === 'Waline' || !false) {
+  if (false) btf.loadComment(document.getElementById('waline-wrap'),loadWaline)
+  else setTimeout(loadWaline, 0)
+} else {
+  function loadOtherComment () {
+    loadWaline()
+  }
+}</script></div><script src="https://npm.elemecdn.com/jquery@latest/dist/jquery.min.js"></script><script src="https://unpkg.com/butterfly-extsrc@1.1.3/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-show-text" src="https://unpkg.com/butterfly-extsrc@1.1.3/dist/click-show-text.min.js" data-mobile="false" data-text="iHMOD" data-fontsize="14px" data-random="false" async="async"></script><link rel="stylesheet" href="https://unpkg.com/aplayer@1.10.1/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://unpkg.com/aplayer@1.10.1/dist/APlayer.min.js"></script><script src="https://unpkg.com/butterfly-extsrc@1.1.3/metingjs/dist/Meting.min.js"></script><script src="https://unpkg.com/pjax@0.2.8/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  document.getElementById('rightside').style.cssText = "opacity: ''; transform: ''"
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div class="no-result" id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.8.1"></script></div></div></body></html>
